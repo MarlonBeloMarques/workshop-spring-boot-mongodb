@@ -1,6 +1,7 @@
 package com.marlonmarques.workshopspringbootmongo.services;
 
 import com.marlonmarques.workshopspringbootmongo.domain.User;
+import com.marlonmarques.workshopspringbootmongo.dto.UserDTO;
 import com.marlonmarques.workshopspringbootmongo.repository.UserRepository;
 import com.marlonmarques.workshopspringbootmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,13 @@ public class UserService {
                 + ", Tipo: " + User.class.getName()));
 
         return user.get();
+    }
+
+    public User insert(User obj) {
+        return repository.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDto) {
+        return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
 }
